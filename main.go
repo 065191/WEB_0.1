@@ -11,8 +11,17 @@ func (m msg) ServeHTTP(resp http.ResponseWriter, req *http.Request) {
 	fmt.Fprint(resp, m)
 }
 func main() {
-	msgHandler := msg("Hello from Web Server in Go!!")
+
+	http.HandleFunc("/about", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "About Page")
+	})
+	http.HandleFunc("/contact", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Contact Page")
+	})
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Index Page")
+	})
 	fmt.Println("Server is listening...")
-	http.ListenAndServe(":80", msgHandler)
+	http.ListenAndServe(":80", nil)
 
 }
