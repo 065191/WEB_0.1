@@ -11,8 +11,9 @@ func main() {
 
 		name := r.URL.Query().Get("name")
 		age := r.URL.Query().Get("age")
-		fmt.Fprintf(w, "Имя: %s Возраст: %s", name, age)
+		nick := r.URL.Query().Get("nick")
+		fmt.Fprintf(w, "Имя: %s Возраст: %s,nick: %s", name, age, nick)
 	})
 	fmt.Println("Server is listening...")
-	http.ListenAndServe(":82", nil)
+	http.ListenAndServe(":88", nil)
 }
